@@ -1,0 +1,10 @@
+.btndelete {
+  border-radius: 5px;
+  margin-left: 10px;
+  background-color: rgb(255, 115, 0);
+}
+
+.btndelete:hover,
+.btndelete:focus {
+  background-color: rgb(242, 255, 0);
+}
