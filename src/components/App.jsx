@@ -1,7 +1,7 @@
+import React, { Component } from 'react';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import FormPhone from './FormPhone/FormPhone';
-import React, { Component } from 'react';
 
 export class App extends Component {
   state = {
@@ -30,18 +30,28 @@ export class App extends Component {
   }
 
   handleContact = dataContact => {
-    if (
-      this.state.contacts.some(contact => contact.name === dataContact.name)
-    ) {
-      alert(`${dataContact.name} is already in contacts!`);
-      return;
-    }
+    const { name, number } = dataContact;
 
-    this.setState(prevState => {
-      return {
-        contacts: [dataContact, ...prevState.contacts],
-      };
-    });
+    const isContactExist = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (isContactExist) {
+      alert(`${name} is already in contacts!`);
+    } else {
+      this.setState(prevState => {
+        return {
+          contacts: [
+            { ...dataContact, id: this.generateUniqueId() },
+            ...prevState.contacts,
+          ],
+        };
+      });
+    }
+  };
+
+  generateUniqueId = () => {
+    return Date.now().toString();
   };
 
   handleDelete = contactId => {
