@@ -30,7 +30,7 @@ export class App extends Component {
   }
 
   handleContact = dataContact => {
-    const { name, number } = dataContact;
+    const { name } = dataContact;
 
     const isContactExist = this.state.contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
